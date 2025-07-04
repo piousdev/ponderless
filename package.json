@@ -46,6 +46,7 @@
 		"@trpc/react-query": "^11.4.2",
 		"@trpc/server": "^11.4.2",
 		"@trpc/tanstack-react-query": "^11.4.2",
+		"aos": "^2.3.4",
 		"better-auth": "^1.2.10",
 		"class-variance-authority": "^0.7.1",
 		"client-only": "^0.0.1",
@@ -71,11 +72,13 @@
 		"superjson": "^2.2.2",
 		"tailwind-merge": "^3.3.1",
 		"vaul": "^1.1.2",
+		"web-vitals": "^5.0.3",
 		"zod": "^3.25.67"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.0.5",
 		"@tailwindcss/postcss": "^4",
+		"@types/aos": "^3.0.7",
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
