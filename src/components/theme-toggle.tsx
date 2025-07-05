@@ -16,11 +16,17 @@ interface ThemeToggleButtonProps {
 	size?: "default" | "sm" | "lg" | "icon";
 	variant?:
 		| "default"
-		| "destructive"
-		| "outline"
+		| "primary"
+		| "primaryOutline"
 		| "secondary"
+		| "secondaryOutline"
+		| "destructive"
+		| "destructiveOutline"
+		| "super"
+		| "superOutline"
 		| "ghost"
-		| "link";
+		| "sidebar"
+		| "sidebarOutline";
 	showLabel?: boolean;
 	defaultTheme?: Theme;
 	onThemeChange?: (theme: ResolvedTheme) => void;
