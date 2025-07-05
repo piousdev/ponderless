@@ -45,10 +45,18 @@ export default function Mentors() {
                 </div>
               </div>
               <div className="flex gap-2 ml-4">
-                <Button variant="sidebarOutline" size="sm">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full md:w-auto cursor-pointer"
+                >
                   Learn More
                 </Button>
-                <Button variant="primary" size="sm">
+                <Button
+                  variant="secondary"
+                  size="sm"
+                  className="w-full md:w-auto cursor-pointer"
+                >
                   Connect
                 </Button>
               </div>

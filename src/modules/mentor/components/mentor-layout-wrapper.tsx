@@ -1,7 +1,8 @@
 "use client";
 
 import MentorSidebar from "@/modules/mentor/sidebar";
-import { SidebarProvider, SidebarInset } from "@/components/shadcn/ui/sidebar";
+import { SidebarInset } from "@/components/shadcn/ui/sidebar";
+import { SidebarProvider } from "@/components/shadcn/ui/sidebar-with-trpc";
 
 interface IMentorLayoutWrapper {
 	children: React.ReactNode;
