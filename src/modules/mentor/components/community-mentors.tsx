@@ -7,17 +7,8 @@ import {
   AvatarFallback,
 } from "@/components/shadcn/ui/avatar";
 import { Button } from "@/components/shadcn/ui/button";
-import { Input } from "@/components/shadcn/ui/input";
 import { Card, CardContent } from "@/components/shadcn/ui/card";
 import { Badge } from "@/components/shadcn/ui/badge";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/shadcn/ui/select";
-import { Search } from "lucide-react";
 
 type Mentor = {
   id: number;
@@ -60,25 +51,13 @@ export default function CommunityMentors({
 }: {
   searchTerm: string;
 }) {
-  const [sortBy, setSortBy] = useState("availability");
-
-  const filteredMentors = communityMentorsData
-    .filter(
-      (mentor) =>
-        mentor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        mentor.expertise.some((e) =>
-          e.toLowerCase().includes(searchTerm.toLowerCase()),
-        ),
-    )
-    .sort((a, b) => {
-      if (sortBy === "availability") {
-        return b.isAvailable ? -1 : 1;
-      }
-      if (sortBy === "name") {
-        return a.name.localeCompare(b.name);
-      }
-      return 0;
-    });
+  const filteredMentors = communityMentorsData.filter(
+    (mentor) =>
+      mentor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      mentor.expertise.some((e) =>
+        e.toLowerCase().includes(searchTerm.toLowerCase()),
+      ),
+  );
 
   return (
     <>

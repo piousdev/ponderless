@@ -11,14 +11,16 @@ import { Badge } from "@/components/shadcn/ui/badge";
 
 interface IMentorHeader {
   readonly title: string;
-  readonly description: string;
+  readonly description?: string;
 }
 
 export default function MentorHeader({ title, description }: IMentorHeader) {
   return (
     <div>
       <h1 className="text-2xl font-semibold">{title}</h1>
-      <p className="text-muted-foreground mt-1">{description}</p>
+      {description && (
+        <p className="text-muted-foreground mt-1">{description}</p>
+      )}
     </div>
   );
 }
