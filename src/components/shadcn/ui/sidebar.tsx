@@ -43,6 +43,22 @@ type SidebarContextProps = {
 
 const SidebarContext = React.createContext<SidebarContextProps | null>(null);
 
+function getCookie(name: string): string | null {
+	if (typeof document === "undefined") return null;
+	try {
+		const nameEQ = name + "=";
+		const ca = document.cookie.split(";");
+		for (let i = 0; i < ca.length; i++) {
+			let c = ca[i];
+			while (c.charAt(0) === " ") c = c.substring(1, c.length);
+			if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+		}
+		return null;
+	} catch {
+		return null;
+	}
+}
+
 function setCookie(name: string, value: string, maxAge: number) {
 	try {
 		// biome-ignore lint: Safe cookie setting with try-catch
@@ -79,7 +95,12 @@ function SidebarProvider({
 
 	// This is the internal state of the sidebar.
 	// We use openProp and setOpenProp for control from outside the component.
-	const [_open, _setOpen] = React.useState(defaultOpen);
+	const getInitialState = () => {
+		if (typeof window === "undefined") return defaultOpen;
+		const cookieValue = getCookie(SIDEBAR_COOKIE_NAME);
+		return cookieValue === null ? defaultOpen : cookieValue !== "false";
+	};
+	const [_open, _setOpen] = React.useState(getInitialState);
 	const open = openProp ?? _open;
 	const setOpen = React.useCallback(
 		(value: boolean | ((value: boolean) => boolean)) => {
