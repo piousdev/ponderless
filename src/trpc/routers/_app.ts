@@ -1,5 +1,7 @@
 import { z } from "zod";
 import { baseProcedure, createTRPCRouter } from "../init";
+import { preferencesRouter } from "./preferences";
+
 export const appRouter = createTRPCRouter({
 	hello: baseProcedure
 		.input(
@@ -12,6 +14,7 @@ export const appRouter = createTRPCRouter({
 				greeting: `hello ${opts.input.text}`,
 			};
 		}),
+	preferences: preferencesRouter,
 });
 // export type definition of API
 export type AppRouter = typeof appRouter;
