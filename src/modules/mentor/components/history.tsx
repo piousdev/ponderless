@@ -10,6 +10,11 @@ interface IHistory {
   selectedItems: string[];
   onSelectItem: (title: string, isSelected: boolean) => void;
   onDeleteItem: (title: string) => void;
+  historyItems: {
+    type: string;
+    title: string;
+    date: string;
+  }[];
 }
 
 export const historyItems = [
