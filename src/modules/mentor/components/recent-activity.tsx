@@ -1,17 +1,9 @@
 "use client";
 
-import React from "react";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/shadcn/ui/button";
 import { MoreHorizontal } from "lucide-react";
-import { Separator } from "@/components/shadcn/ui/separator";
-import {
-	Card,
-	CardContent,
-	CardHeader,
-	CardTitle,
-} from "@/components/shadcn/ui/card";
+import { useRouter } from "next/navigation";
 import { Badge } from "@/components/shadcn/ui/badge";
+import { Button } from "@/components/shadcn/ui/button";
 
 const recentMentorActivity = [
 	{

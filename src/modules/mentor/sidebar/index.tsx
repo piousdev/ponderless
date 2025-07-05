@@ -80,9 +80,7 @@ export default function MentorSidebar({
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton size="lg" asChild>
-							<Link href="/">
-								<SidebarLogo />
-							</Link>
+							<SidebarLogo />
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				</SidebarMenu>
