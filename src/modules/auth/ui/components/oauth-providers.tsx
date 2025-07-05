@@ -88,7 +88,7 @@ const OAuthProvidersImplementation = memo(
 					<Button
 						key={provider.id}
 						type="button"
-						variant="outline"
+						variant="secondaryOutline"
 						size={showIconsOnly ? "icon" : "default"}
 						className={cn(
 							"min-h-[44px] min-w-[44px] transition-all duration-200",
