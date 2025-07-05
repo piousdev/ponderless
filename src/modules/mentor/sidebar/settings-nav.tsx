@@ -1,104 +1,98 @@
 "use client";
 
 import {
-  Folder,
-  MoreHorizontal,
-  Share,
-  Trash2,
-  type LucideIcon,
+	Folder,
+	type LucideIcon,
+	MoreHorizontal,
+	Share,
+	Trash2,
 } from "lucide-react";
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
 } from "@/components/shadcn/ui/dropdown-menu";
 import {
-  SidebarGroup,
-  SidebarGroupLabel,
-  SidebarMenu,
-  SidebarMenuAction,
-  SidebarMenuButton,
-  SidebarMenuItem,
-  useSidebar,
+	SidebarGroup,
+	SidebarGroupLabel,
+	SidebarMenu,
+	SidebarMenuAction,
+	SidebarMenuButton,
+	SidebarMenuItem,
+	useSidebar,
 } from "@/components/shadcn/ui/sidebar";
 
 interface ISettingsNav {
-  name: string;
-  url: string;
-  icon: LucideIcon;
+	name: string;
+	url: string;
+	icon: LucideIcon;
 }
 
 export const settingsNav: ISettingsNav[] = [
-  {
-    name: "Settings",
-    url: "/mentor/settings",
-    icon: Trash2,
-  },
-  {
-    name: "Help",
-    url: "/mentor/help",
-    icon: MoreHorizontal,
-  },
+	{
+		name: "Settings",
+		url: "/mentor/settings",
+		icon: Trash2,
+	},
+	{
+		name: "Help",
+		url: "/mentor/help",
+		icon: MoreHorizontal,
+	},
 ];
 
 export default function SettingsNav({
-  settings,
+	settings,
 }: {
-  settings: ISettingsNav[];
+	settings: ISettingsNav[];
 }) {
-  const { isMobile } = useSidebar();
+	const { isMobile } = useSidebar();
 
-  return (
-    <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Settings</SidebarGroupLabel>
-      <SidebarMenu>
-        {settings.map((item) => (
-          <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
-              <a href={item.url}>
-                <item.icon />
-                <span>{item.name}</span>
-              </a>
-            </SidebarMenuButton>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuAction showOnHover>
-                  <MoreHorizontal />
-                  <span className="sr-only">More</span>
-                </SidebarMenuAction>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                className="w-48"
-                side={isMobile ? "bottom" : "right"}
-                align={isMobile ? "end" : "start"}
-              >
-                <DropdownMenuItem>
-                  <Folder className="text-muted-foreground" />
-                  <span>View Project</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Share className="text-muted-foreground" />
-                  <span>Share Project</span>
-                </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Trash2 className="text-muted-foreground" />
-                  <span>Delete Project</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        ))}
-        <SidebarMenuItem>
-          <SidebarMenuButton>
-            <MoreHorizontal />
-            <span>More</span>
-          </SidebarMenuButton>
-        </SidebarMenuItem>
-      </SidebarMenu>
-    </SidebarGroup>
-  );
+	return (
+		<SidebarGroup className="group-data-[collapsible=icon]:hidden">
+			<SidebarGroupLabel>Settings</SidebarGroupLabel>
+			<SidebarMenu>
+				{settings.map((item) => (
+					<SidebarMenuItem key={item.name}>
+						<SidebarMenuButton asChild>
+							<a href={item.url}>
+								<item.icon />
+								<span>{item.name}</span>
+							</a>
+						</SidebarMenuButton>
+						<DropdownMenu>
+							<DropdownMenuTrigger asChild>
+								<SidebarMenuAction showOnHover>
+									<MoreHorizontal />
+									<span className="sr-only">More</span>
+								</SidebarMenuAction>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent
+								className="w-48"
+								side={isMobile ? "bottom" : "right"}
+								align={isMobile ? "end" : "start"}
+							>
+								<DropdownMenuItem>
+									<Folder className="text-muted-foreground" />
+									<span>View Project</span>
+								</DropdownMenuItem>
+								<DropdownMenuItem>
+									<Share className="text-muted-foreground" />
+									<span>Share Project</span>
+								</DropdownMenuItem>
+								<DropdownMenuSeparator />
+								<DropdownMenuItem>
+									<Trash2 className="text-muted-foreground" />
+									<span>Delete Project</span>
+								</DropdownMenuItem>
+							</DropdownMenuContent>
+						</DropdownMenu>
+					</SidebarMenuItem>
+				))}
+			</SidebarMenu>
+		</SidebarGroup>
+	);
 }

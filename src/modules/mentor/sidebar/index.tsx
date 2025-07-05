@@ -1,18 +1,10 @@
 "use client";
 
 import {
-	BookOpen,
-	Bot,
 	Calendar,
-	Command,
-	Frame,
+	HelpCircle,
 	History,
-	LifeBuoy,
-	MapPin,
-	PieChart,
 	Send,
-	Settings2,
-	SquareTerminal,
 	Users,
 	Users2,
 } from "lucide-react";
@@ -27,18 +19,15 @@ import {
 	SidebarMenuButton,
 	SidebarMenuItem,
 } from "@/components/shadcn/ui/sidebar";
+import { authClient } from "@/lib/auth/auth-client";
 import SidebarLogo from "@/modules/mentor/sidebar/logo";
 import SidebarMainNav from "@/modules/mentor/sidebar/main-nav";
 import SecondaryNav from "@/modules/mentor/sidebar/secondary-nav";
-import SettingsNav from "@/modules/mentor/sidebar/settings-nav";
+import ThemeSwitcher from "@/modules/mentor/sidebar/theme-switcher";
+import TrialCard from "@/modules/mentor/sidebar/trial-card";
 import UserNav from "@/modules/mentor/sidebar/user-nav";
 
 const data = {
-	user: {
-		name: "shadcn",
-		email: "m@example.com",
-		avatar: "/avatars/shadcn.jpg",
-	},
 	mainNav: [
 		{
 			title: "Mentors",
@@ -63,31 +52,14 @@ const data = {
 	],
 	secondaryNav: [
 		{
-			title: "Support",
-			url: "#",
-			icon: LifeBuoy,
+			title: "Help",
+			url: "/mentor/help",
+			icon: HelpCircle,
 		},
 		{
 			title: "Feedback",
-			url: "#",
+			url: "/mentor/feedback",
 			icon: Send,
-		},
-	],
-	settings: [
-		{
-			name: "Design Engineering",
-			url: "#",
-			icon: Frame,
-		},
-		{
-			name: "Sales & Marketing",
-			url: "#",
-			icon: PieChart,
-		},
-		{
-			name: "Travel",
-			url: "#",
-			icon: MapPin,
 		},
 	],
 };
@@ -95,6 +67,13 @@ const data = {
 export default function MentorSidebar({
 	...props
 }: React.ComponentProps<typeof Sidebar>) {
+	const { data: session } = authClient.useSession();
+
+	// Don't render sidebar if user is not logged in
+	if (!session?.user) {
+		return null;
+	}
+
 	return (
 		<Sidebar variant="inset" {...props}>
 			<SidebarHeader>
@@ -110,11 +89,17 @@ export default function MentorSidebar({
 			</SidebarHeader>
 			<SidebarContent>
 				<SidebarMainNav items={data.mainNav} />
-				<SettingsNav settings={data.settings} />
+				<TrialCard
+					currentMentors={2}
+					maxMentors={5}
+					currentMeetings={3}
+					maxMeetings={10}
+				/>
 				<SecondaryNav items={data.secondaryNav} className="mt-auto" />
+				<ThemeSwitcher />
 			</SidebarContent>
 			<SidebarFooter>
-				<UserNav user={data.user} />
+				<UserNav user={session.user} />
 			</SidebarFooter>
 		</Sidebar>
 	);
