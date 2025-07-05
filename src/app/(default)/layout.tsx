@@ -23,7 +23,7 @@ export default function DefaultLayout({
 	return (
 		<>
 			<Header />
-			<main className="grow">{children}</main>
+			<main className="grow pt-[calc(56px+0.5rem)] md:pt-[calc(56px+1.5rem)]">{children}</main>
 			<Footer border={true} />
 		</>
 	);
