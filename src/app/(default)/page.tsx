@@ -1,8 +1,6 @@
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { ClientGreeting } from "@/components/client-greeting";
 import { Button } from "@/components/shadcn/ui/button";
-import { SignUpForm } from "@/components/signup-form";
 import { HydrateClient, prefetch, trpc } from "@/trpc/server";
 
 export default async function Home() {
