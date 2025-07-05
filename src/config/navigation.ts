@@ -85,37 +85,57 @@ const primaryNavItems: ReadonlyArray<INavigationItem> = [
     hotkey: "h",
   },
   {
+    id: createNavigationId("nav-pricing"),
+    title: "Pricing",
+    hrefOrExternalUrl: "/pricing",
+    order: 2,
+    section: "primary" as const,
+    trackingId: createTrackingId("nav_pricing"),
+    ariaLabel: "View your pricing",
+    description: "View and edit your pricing information",
+    hotkey: "p",
+    meta: {
+      hideWhenAuthenticated: true,
+    },
+  },
+  {
     id: createNavigationId("nav-dashboard"),
     title: "Dashboard",
     hrefOrExternalUrl: "/dashboard",
     icon: "dashboard" as const,
-    order: 2,
+    order: 3,
     section: "primary" as const,
     roles: ["authenticated"] as const,
     trackingId: createTrackingId("nav_dashboard"),
     ariaLabel: "Access your personal dashboard",
     description: "View your personalized dashboard and analytics",
     hotkey: "d",
+    meta: {
+      hideWhenAuthenticated: true,
+    },
   },
   {
     id: createNavigationId("nav-diagnostic"),
     title: "Diagnostic",
     hrefOrExternalUrl: "/diagnostic",
     icon: "chart-line" as const,
-    order: 3,
+    order: 4,
     section: "primary" as const,
     roles: ["authenticated"] as const,
     trackingId: createTrackingId("nav_diagnostic"),
     ariaLabel: "Run diagnostic tools",
     description: "Access diagnostic tools and assessments",
     isNew: true,
+    meta: {
+      hideWhenAuthenticated: true,
+    },
   },
   {
     id: createNavigationId("nav-ai-mentor"),
     title: "Mentor",
     hrefOrExternalUrl: "/mentor",
     icon: "robot" as const,
-    order: 4,
+    order: 5,
     section: "primary" as const,
     roles: ["authenticated"] as const,
     trackingId: createTrackingId("nav_ai_mentor"),
@@ -125,14 +145,14 @@ const primaryNavItems: ReadonlyArray<INavigationItem> = [
     isNew: true,
   },
   {
-    id: createNavigationId("nav-change-log"),
-    title: "Change Log",
-    hrefOrExternalUrl: "/change-log",
+    id: createNavigationId("nav-changelog"),
+    title: "Changelog",
+    hrefOrExternalUrl: "/changelog",
     icon: "bell" as const,
-    order: 5,
+    order: 6,
     section: "primary" as const,
-    trackingId: createTrackingId("nav_change_log"),
-    ariaLabel: "View latest change log",
+    trackingId: createTrackingId("nav_changelog"),
+    ariaLabel: "View latest changelog",
     badge: 3,
   },
   {
@@ -140,7 +160,7 @@ const primaryNavItems: ReadonlyArray<INavigationItem> = [
     title: "Feedback",
     hrefOrExternalUrl: "/feedback",
     icon: "envelope" as const,
-    order: 6,
+    order: 7,
     section: "primary" as const,
     trackingId: createTrackingId("nav_feedback"),
     ariaLabel: "Provide feedback to us",
@@ -181,6 +201,15 @@ function filterNavigationByRole(
   userRoles: ReadonlyArray<UserRole> = ["guest"],
 ): ReadonlyArray<INavigationItem> {
   return items.filter((item): boolean => {
+    // Check if item should be hidden when authenticated
+    if (
+      item.meta?.hideWhenAuthenticated &&
+      userRoles.includes("authenticated")
+    ) {
+      return false;
+    }
+
+    // Check role-based filtering
     if (!item.roles || item.roles.length === 0) {
       return true;
     }

@@ -19,7 +19,7 @@ const Header: React.FC<HeaderProps> = ({
 	return (
 		<header
 			className={cn(
-				"bg-background sticky z-50 w-full top-2 md:top-6",
+				"sticky z-50 w-full top-2 md:top-6",
 				className,
 			)}
 			{...htmlProps}

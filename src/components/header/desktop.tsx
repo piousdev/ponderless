@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/shadcn/ui/button";
 import { ThemeToggleButton } from "@/components/theme-toggle";
+import { UserProfileDropdown } from "@/components/user-profile-dropdown";
 import {
 	filterNavigationByRole,
 	type INavigationItem,
@@ -109,6 +110,8 @@ const SecondaryNav: React.FC<INavigation> = ({ className }) => {
 			aria-label="Secondary navigation"
 		>
 			<div className="flex items-center gap-2">
+				<ThemeToggleButton className="mr-2" />
+
 				{filteredNavItems.map((item) => {
 					// Handle items with onClick and no navigation
 					if (item.meta?.noNavigation && item.onClick) {
@@ -135,7 +138,8 @@ const SecondaryNav: React.FC<INavigation> = ({ className }) => {
 					);
 				})}
 
-				<ThemeToggleButton className="ml-2" />
+				{/* Show user profile dropdown when authenticated */}
+				{session?.user && <UserProfileDropdown user={session.user} />}
 			</div>
 		</nav>
 	);
