@@ -3,6 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -24,6 +25,7 @@ import {
 	SelectTrigger,
 	SelectValue,
 } from "@/components/shadcn/ui/select";
+import { authClient } from "@/lib/auth/auth-client";
 import { COUNTRIES } from "@/modules/auth/countries";
 
 // Simple validation schema
@@ -39,6 +41,8 @@ type SignUpForm = z.infer<typeof signUpSchema>;
 export default function SignUpView() {
 	const [showPassword, setShowPassword] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+	const router = useRouter();
 
 	const form = useForm<SignUpForm>({
 		resolver: zodResolver(signUpSchema),
@@ -69,17 +73,26 @@ export default function SignUpView() {
 		setIsLoading(true);
 
 		try {
-			// Simulate API call
-			await new Promise((resolve) => setTimeout(resolve, 1500));
+			const [firstName, ...lastNameParts] = data.fullName.split(" ");
+			const lastName = lastNameParts.join(" ") || "";
 
-			console.log("Sign up attempt:", data);
-			// Here you would typically call your authentication API
-			// For now, just show success
-			alert("Account created successfully!");
+			const result = await authClient.signUp.email({
+				email: data.email,
+				password: data.password,
+				name: data.fullName,
+			});
+
+			if (result.error) {
+				form.setError("email", {
+					message: "Email already exists",
+				});
+			} else {
+				router.push("/");
+			}
 		} catch (error) {
 			console.error("Sign up error:", error);
 			form.setError("email", {
-				message: "Email already exists",
+				message: "Failed to create account",
 			});
 		} finally {
 			setIsLoading(false);
@@ -87,10 +100,21 @@ export default function SignUpView() {
 	};
 
 	const handleGoogleSignUp = async () => {
-		console.log("Google sign up clicked");
-		// Here you would integrate with Google OAuth
-		// For example, using NextAuth or Firebase Auth
-		alert("Google sign up not implemented yet");
+		setIsGoogleLoading(true);
+		try {
+			const { error } = await authClient.signIn.social({
+				provider: "google",
+				callbackURL: window.location.origin,
+			});
+
+			if (error) {
+				console.error("Google sign up error:", error);
+			}
+		} catch (error) {
+			console.error("Google sign up error:", error);
+		} finally {
+			setIsGoogleLoading(false);
+		}
 	};
 
 	return (
@@ -263,11 +287,18 @@ export default function SignUpView() {
 					<Button
 						type="button"
 						onClick={handleGoogleSignUp}
-						disabled={isLoading}
+						disabled={isLoading || isGoogleLoading}
 						variant="secondary"
 						className="w-full h-12 font-medium text-base rounded-xl"
 					>
-						Continue with Google
+						{isGoogleLoading ? (
+							<>
+								<Loader2 className="mr-2 h-5 w-5 animate-spin" />
+								Signing up with Google...
+							</>
+						) : (
+							"Continue with Google"
+						)}
 					</Button>
 
 					{/* Terms and Privacy */}

@@ -3,7 +3,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -17,6 +18,7 @@ import {
 	FormMessage,
 } from "@/components/shadcn/ui/form";
 import { Input } from "@/components/shadcn/ui/input";
+import { authClient } from "@/lib/auth/auth-client";
 
 // Simple validation schema
 const signInSchema = z.object({
@@ -29,6 +31,8 @@ type SignInForm = z.infer<typeof signInSchema>;
 export default function SignInView() {
 	const [showPassword, setShowPassword] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [isGoogleLoading, setIsGoogleLoading] = useState(false);
+	const router = useRouter();
 
 	const form = useForm<SignInForm>({
 		resolver: zodResolver(signInSchema),
@@ -57,13 +61,18 @@ export default function SignInView() {
 		setIsLoading(true);
 
 		try {
-			// Simulate API call
-			await new Promise((resolve) => setTimeout(resolve, 1500));
+			const result = await authClient.signIn.email({
+				email: data.email,
+				password: data.password,
+			});
 
-			console.log("Sign in attempt:", data);
-			// Here you would typically call your authentication API
-			// For now, just show success
-			alert("Sign in successful!");
+			if (result.error) {
+				form.setError("password", {
+					message: "Invalid email or password",
+				});
+			} else {
+				router.push("/");
+			}
 		} catch (error) {
 			console.error("Sign in error:", error);
 			form.setError("password", {
@@ -71,6 +80,24 @@ export default function SignInView() {
 			});
 		} finally {
 			setIsLoading(false);
+		}
+	};
+
+	const handleGoogleSignIn = async () => {
+		setIsGoogleLoading(true);
+		try {
+			const { error } = await authClient.signIn.social({
+				provider: "google",
+				callbackURL: window.location.origin,
+			});
+
+			if (error) {
+				console.error("Google sign in error:", error);
+			}
+		} catch (error) {
+			console.error("Google sign in error:", error);
+		} finally {
+			setIsGoogleLoading(false);
 		}
 	};
 
@@ -179,6 +206,29 @@ export default function SignInView() {
 							</Button>
 						</form>
 					</Form>
+
+					{/* Or Divider */}
+					<div className="my-6 text-center">
+						<span className="text-muted-foreground text-sm">Or</span>
+					</div>
+
+					{/* Google Sign In Button */}
+					<Button
+						type="button"
+						onClick={handleGoogleSignIn}
+						disabled={isLoading || isGoogleLoading}
+						variant="secondary"
+						className="w-full h-12 font-medium text-base rounded-xl"
+					>
+						{isGoogleLoading ? (
+							<>
+								<Loader2 className="mr-2 h-5 w-5 animate-spin" />
+								Signing in with Google...
+							</>
+						) : (
+							"Continue with Google"
+						)}
+					</Button>
 
 					{/* Forgot Password Link */}
 					<div className="text-center mt-6">
