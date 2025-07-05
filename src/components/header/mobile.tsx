@@ -4,7 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { Button } from "@/components/shadcn/ui/button";
-import { ThemeToggleButton } from "@/components/theme-toggle";
+import {
+	ThemeToggleButton,
+	type ThemeToggleButtonProps,
+} from "@/components/theme-toggle";
 import { UserProfileDropdown } from "@/components/user-profile-dropdown";
 import {
 	filterNavigationByRole,
@@ -70,7 +73,7 @@ const MobileNavigation = () => {
 
 	const getButtonVariant = (item: INavigationItem) => {
 		// Use variant from metadata if available, otherwise default to "ghost"
-		return (item.meta?.variant as string) || "ghost";
+		return (item.meta?.variant as ThemeToggleButtonProps["variant"]) || "ghost";
 	};
 
 	useEffect(() => {
