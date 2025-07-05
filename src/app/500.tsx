@@ -1,11 +1,11 @@
 "use client";
 
-import { ArrowLeft, Home, Search } from "lucide-react";
+import { ArrowLeft, Home, RefreshCw, Server } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/shadcn/ui/button";
 
-export default function NotFound() {
+export default function InternalServerError() {
 	const router = useRouter();
 
 	return (
@@ -13,25 +13,25 @@ export default function NotFound() {
 			<div className="w-full max-w-2xl">
 				{/* Main Error Card */}
 				<div className="bg-card rounded-2xl shadow-xl p-8 md:p-12 text-center">
-					{/* 404 Display with Search Icon */}
+					{/* 500 Display with Server Icon */}
 					<div className="mb-8">
 						<div className="flex items-center justify-center text-8xl md:text-9xl font-black text-muted-foreground/20 select-none mb-6">
-							<span>4</span>
+							<span>5</span>
 							<div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-muted rounded-full mx-2 md:mx-4">
-								<Search className="w-8 h-8 md:w-10 md:h-10 text-muted-foreground" />
+								<Server className="w-8 h-8 md:w-10 md:h-10 text-muted-foreground" />
 							</div>
-							<span>4</span>
+							<span>0</span>
 						</div>
 					</div>
 
 					{/* Title and Description */}
 					<div className="space-y-4 mb-10">
 						<h1 className="text-3xl md:text-4xl font-bold text-card-foreground">
-							Page Not Found
+							Internal Server Error
 						</h1>
 						<p className="text-lg text-muted-foreground max-w-md mx-auto">
-							The page you're looking for seems to have wandered off. Let's get
-							you back on track.
+							Something went wrong on our end. Our team has been notified and is
+							working to fix this issue.
 						</p>
 					</div>
 
@@ -48,8 +48,18 @@ export default function NotFound() {
 						</Button>
 
 						<Button
-							asChild
+							onClick={() => window.location.reload()}
 							variant="primary"
+							size="lg"
+							className="w-full sm:w-auto h-12"
+						>
+							<RefreshCw className="w-5 h-5 mr-2" />
+							Try Again
+						</Button>
+
+						<Button
+							asChild
+							variant="primaryOutline"
 							size="lg"
 							className="w-full sm:w-auto h-12"
 						>
@@ -63,7 +73,7 @@ export default function NotFound() {
 					{/* Helpful Links */}
 					<div className="pt-8 border-t border-border">
 						<p className="text-sm text-muted-foreground mb-4">
-							Still looking for something? Try these pages:
+							If the problem persists, try these pages:
 						</p>
 						<div className="flex flex-wrap gap-2 justify-center">
 							<Button variant="ghost" size="sm" asChild>
@@ -81,7 +91,7 @@ export default function NotFound() {
 
 				{/* Subtle footer */}
 				<p className="text-xs text-muted-foreground text-center mt-6">
-					Error Code: 404 • Page Not Found
+					Error Code: 500 • Internal Server Error
 				</p>
 			</div>
 		</div>

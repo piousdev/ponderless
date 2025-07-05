@@ -1,11 +1,11 @@
 "use client";
 
-import { ArrowLeft, Home, Search } from "lucide-react";
+import { ArrowLeft, Home, LogIn, Shield } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/shadcn/ui/button";
 
-export default function NotFound() {
+export default function Forbidden() {
 	const router = useRouter();
 
 	return (
@@ -13,25 +13,25 @@ export default function NotFound() {
 			<div className="w-full max-w-2xl">
 				{/* Main Error Card */}
 				<div className="bg-card rounded-2xl shadow-xl p-8 md:p-12 text-center">
-					{/* 404 Display with Search Icon */}
+					{/* 403 Display with Shield Icon */}
 					<div className="mb-8">
 						<div className="flex items-center justify-center text-8xl md:text-9xl font-black text-muted-foreground/20 select-none mb-6">
 							<span>4</span>
 							<div className="inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 bg-muted rounded-full mx-2 md:mx-4">
-								<Search className="w-8 h-8 md:w-10 md:h-10 text-muted-foreground" />
+								<Shield className="w-8 h-8 md:w-10 md:h-10 text-muted-foreground" />
 							</div>
-							<span>4</span>
+							<span>3</span>
 						</div>
 					</div>
 
 					{/* Title and Description */}
 					<div className="space-y-4 mb-10">
 						<h1 className="text-3xl md:text-4xl font-bold text-card-foreground">
-							Page Not Found
+							Access Forbidden
 						</h1>
 						<p className="text-lg text-muted-foreground max-w-md mx-auto">
-							The page you're looking for seems to have wandered off. Let's get
-							you back on track.
+							You don't have permission to access this resource. Please check
+							your credentials or contact support.
 						</p>
 					</div>
 
@@ -53,6 +53,18 @@ export default function NotFound() {
 							size="lg"
 							className="w-full sm:w-auto h-12"
 						>
+							<Link href="/signin">
+								<LogIn className="w-5 h-5 mr-2" />
+								Sign In
+							</Link>
+						</Button>
+
+						<Button
+							asChild
+							variant="primaryOutline"
+							size="lg"
+							className="w-full sm:w-auto h-12"
+						>
 							<Link href="/">
 								<Home className="w-5 h-5 mr-2" />
 								Go Home
@@ -63,17 +75,17 @@ export default function NotFound() {
 					{/* Helpful Links */}
 					<div className="pt-8 border-t border-border">
 						<p className="text-sm text-muted-foreground mb-4">
-							Still looking for something? Try these pages:
+							Need help? Try these options:
 						</p>
 						<div className="flex flex-wrap gap-2 justify-center">
-							<Button variant="ghost" size="sm" asChild>
-								<Link href="/mentor">Mentor</Link>
-							</Button>
 							<Button variant="ghost" size="sm" asChild>
 								<Link href="/signin">Sign In</Link>
 							</Button>
 							<Button variant="ghost" size="sm" asChild>
 								<Link href="/signup">Sign Up</Link>
+							</Button>
+							<Button variant="ghost" size="sm" asChild>
+								<Link href="/mentor">Mentor</Link>
 							</Button>
 						</div>
 					</div>
@@ -81,7 +93,7 @@ export default function NotFound() {
 
 				{/* Subtle footer */}
 				<p className="text-xs text-muted-foreground text-center mt-6">
-					Error Code: 404 • Page Not Found
+					Error Code: 403 • Access Forbidden
 				</p>
 			</div>
 		</div>

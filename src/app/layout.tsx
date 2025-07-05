@@ -7,7 +7,6 @@ import {
 } from "@/config/fonts";
 import "@/styles/globals.css";
 import { Toaster } from "sonner";
-import Header from "@/components/header";
 import { WebVitalsReporter } from "@/components/performance/web-vitals-reporter";
 import { metaThemeColors, siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
