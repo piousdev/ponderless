@@ -17,7 +17,7 @@ import { Separator } from "@/components/shadcn/ui/separator";
 
 interface ProfileModalProps {
 	open: boolean;
-	onOpenChange: (open: boolean) => void;
+	onOpenChangeAction: (open: boolean) => void;
 	user: {
 		id: string;
 		email: string;
@@ -27,7 +27,11 @@ interface ProfileModalProps {
 	};
 }
 
-export function ProfileModal({ open, onOpenChange, user }: ProfileModalProps) {
+export function ProfileModal({
+	open,
+	onOpenChangeAction,
+	user,
+}: ProfileModalProps) {
 	const getInitials = (name?: string | null, email?: string) => {
 		if (name) {
 			const parts = name.split(" ");
@@ -52,7 +56,7 @@ export function ProfileModal({ open, onOpenChange, user }: ProfileModalProps) {
 	};
 
 	return (
-		<Dialog open={open} onOpenChange={onOpenChange}>
+		<Dialog open={open} onOpenChange={onOpenChangeAction}>
 			<DialogContent className="sm:max-w-[425px]">
 				<DialogHeader>
 					<DialogTitle>User Profile</DialogTitle>
@@ -90,7 +94,7 @@ export function ProfileModal({ open, onOpenChange, user }: ProfileModalProps) {
 
 						<div className="grid gap-2">
 							<Label className="text-sm text-muted-foreground">User ID</Label>
-							<p className="text-sm font-medium font-mono text-xs">{user.id}</p>
+							<p className="font-medium font-mono text-xs">{user.id}</p>
 						</div>
 
 						<div className="grid gap-2">

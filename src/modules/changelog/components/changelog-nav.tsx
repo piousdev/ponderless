@@ -26,13 +26,11 @@ export default function ChangelogNav({
 						key={category.name}
 						onClick={() => setActiveCategoryAction(category.name)}
 						className={cn(
-							"flex items-center space-x-3 px-4 py-2 rounded-lg text-foreground hover:bg-background hover:text-foreground transition-colors w-full",
-							activeCategory === category.name
-								? "bg-background shadow-sm font-semibold text-primary"
-								: "",
+							"flex items-center space-x-3 px-4 py-2 rounded-lg transition-colors w-full",
+							activeCategory === category.name ? "shadow-sm font-semibold" : "",
 						)}
 					>
-						<category.icon className="size-5 text-primary" />
+						<category.icon className="size-5" />
 						<span>{category.name}</span>
 					</Button>
 				))}

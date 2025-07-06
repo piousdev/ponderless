@@ -23,8 +23,9 @@ export default function Changelog() {
 						News & Updates
 					</h1>
 					<p className="mt-4 max-w-2xl mx-auto text-lg text-muted-foreground">
-						Rank and score updates and feature requests so you know you're
-						working on the most impactful things.
+						Track the latest AI mentor features, cognitive training
+						improvements, and platform updates that enhance your mental fitness
+						journey.
 					</p>
 				</header>
 
