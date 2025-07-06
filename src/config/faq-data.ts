@@ -1,4 +1,4 @@
-import type { AccordionSectionData } from "@/modules/mentor/components/help-accordion";
+import type { AccordionSectionData } from "@/modules/mentors/components/help-accordion";
 
 export const faqData = [
 	{
