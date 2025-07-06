@@ -1,10 +1,5 @@
 import { Button } from "@/components/shadcn/ui/button";
-import {
-	Card,
-	CardContent,
-	CardHeader,
-	CardTitle,
-} from "@/components/shadcn/ui/card";
+import { Card, CardHeader, CardTitle } from "@/components/shadcn/ui/card";
 import { templates } from "../constants";
 import type { ITemplate } from "../types";
 

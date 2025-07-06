@@ -15,20 +15,12 @@ export default function MentorLayoutWrapper({
 	// Mock notification state - in a real app, this would come from a context or API
 	const notificationCount = 3; // You can implement real notification logic here
 
-	const handleCreateMentor = () => {
-		// TODO: Implement create mentor functionality
-		console.log("Create mentor clicked");
-	};
-
 	return (
 		<SidebarProvider>
 			<div className="flex min-h-screen w-full">
 				<MentorSidebar />
 				<SidebarInset>
-					<MentorMainHeader
-						notificationCount={notificationCount}
-						onCreateMentor={handleCreateMentor}
-					/>
+					<MentorMainHeader notificationCount={notificationCount} />
 					<div className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
 						{children}
 					</div>
