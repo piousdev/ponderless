@@ -23,7 +23,7 @@ export default function ProgressHubLogo() {
 			<Tooltip open={tooltipOpen} onOpenChange={setTooltipOpen}>
 				<TooltipTrigger asChild>
 					<Link
-						href="/progress-hub"
+						href="/progress"
 						className="flex items-center gap-4"
 						onMouseEnter={handleMouseEnter}
 					>

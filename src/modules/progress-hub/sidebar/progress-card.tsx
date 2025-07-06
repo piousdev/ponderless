@@ -77,7 +77,7 @@ export default function ProgressHubProgressCard({
 				{/* Quick Assessment Button */}
 				<Button asChild variant="secondary" className="w-full text-[14px]">
 					<Link
-						href="/progress-hub/assessments"
+						href="/progress/assessments"
 						className="flex items-center justify-center gap-1"
 					>
 						Take Assessment

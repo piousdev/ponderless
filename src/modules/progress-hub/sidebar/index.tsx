@@ -30,66 +30,66 @@ const data = {
 	mainNav: [
 		{
 			title: "Overview",
-			url: "/progress-hub",
+			url: "/progress",
 			icon: LineChartIcon,
 		},
 		{
 			title: "Assessments",
-			url: "/progress-hub/assessments",
+			url: "/progress/assessments",
 			icon: FileChartLineIcon,
 			items: [
 				{
 					title: "Schedule",
-					url: "/progress-hub/assessments/schedule",
+					url: "/progress/assessments/schedule",
 				},
 				{
 					title: "Results",
-					url: "/progress-hub/assessments/results",
+					url: "/progress/assessments/results",
 				},
 				{
 					title: "Library",
-					url: "/progress-hub/assessments/library",
+					url: "/progress/assessments/library",
 				},
 			],
 		},
 		{
-			title: "My Progress",
-			url: "/progress-hub/progress",
+			title: "Progress",
+			url: "/progress/my-progress",
 			icon: BarChartIcon,
 			items: [
 				{
 					title: "Performance Analytics",
-					url: "/progress-hub/progress",
+					url: "/progress/my-progress/analytics",
 				},
 				{
 					title: "Cognitive Profile",
-					url: "/progress-hub/progress/cognitive-profile",
+					url: "/progress/my-progress/cognitive-profile",
 				},
 			],
 		},
 		{
-			title: "My Goals",
-			url: "/progress-hub/goals",
+			title: "Goals",
+			url: "/progress/goals",
 			icon: CrosshairIcon,
 			items: [
 				{
 					title: "Active Goals",
-					url: "/progress-hub/goals",
+					url: "/progress/goals/active",
 				},
 				{
 					title: "Achievements",
-					url: "/progress-hub/goals/achievements",
+					url: "/progress/goals/achievements",
 				},
 			],
 		},
 		{
-			title: "My Learning",
-			url: "/progress-hub/learning",
+			title: "Learning",
+			url: "/progress/learning",
 			icon: BookOpenIcon,
 			items: [
 				{
 					title: "Exercise History",
-					url: "/progress-hub/learning",
+					url: "/progress/learning/history",
 				},
 			],
 		},
@@ -97,12 +97,12 @@ const data = {
 	secondaryNav: [
 		{
 			title: "Help",
-			url: "/progress-hub/help",
+			url: "/progress/help",
 			icon: HelpCircle,
 		},
 		{
 			title: "Feedback",
-			url: "/progress-hub/feedback",
+			url: "/progress/feedback",
 			icon: Send,
 		},
 	],

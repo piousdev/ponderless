@@ -29,15 +29,16 @@ interface IProgressHubMainHeader {
 
 // Route mapping for breadcrumbs
 const routeMap: Record<string, string> = {
-	"/progress-hub": "Overview",
-	"/progress-hub/assessments": "Assessments",
-	"/progress-hub/assessments/results": "My Results",
-	"/progress-hub/assessments/schedule": "My Schedules",
-	"/progress-hub/progress": "My Progress",
-	"/progress-hub/progress/cognitive-profile": "Cognitive Profile",
-	"/progress-hub/goals": "Goals & Milestones",
-	"/progress-hub/goals/achievements": "Achievements",
-	"/progress-hub/learning": "My Learning",
+	"/progress": "Overview",
+	"/progress/assessments": "Assessments",
+	"/progress/assessments/results": "Results",
+	"/progress/assessments/schedule": "Schedule",
+	"/progress/assessments/library": "Library",
+	"/progress/progress": "My Progress",
+	"/progress/progress/cognitive-profile": "Cognitive Profile",
+	"/progress/goals": "Goals & Milestones",
+	"/progress/goals/achievements": "Achievements",
+	"/progress/learning": "My Learning",
 };
 
 export default function ProgressHubMainHeader({

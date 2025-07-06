@@ -44,12 +44,12 @@ const navItems: NavItem[] = [
 	{ title: "Overview", href: "/", icon: Home },
 	{
 		title: "Assessments",
-		href: "/assessments",
+		href: "/progress/assessments",
 		icon: ClipboardCheck,
 		children: [
-			{ title: "Test Library", href: "/assessments" },
-			{ title: "My Results", href: "/assessments/my-results" },
-			{ title: "Schedule", href: "/assessments/schedule" },
+			{ title: "Test Library", href: "/progress/assessments" },
+			{ title: "My Results", href: "/progress/assessments/results" },
+			{ title: "Schedule", href: "/progress/assessments/schedule" },
 		],
 	},
 	{

@@ -42,7 +42,7 @@ export default function ProgressHubMainNav({
 	const pathname = usePathname();
 
 	const isActiveItem = (url: string) => {
-		if (url === "/progress-hub") return pathname === "/progress-hub";
+		if (url === "/progress") return pathname === "/progress";
 		return pathname.startsWith(url);
 	};
 
