@@ -1,6 +1,6 @@
 "use client";
 
-import { Bell, Plus } from "lucide-react";
+import { Bell } from "lucide-react";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { Badge } from "@/components/shadcn/ui/badge";
@@ -22,10 +22,10 @@ import {
 	TooltipTrigger,
 } from "@/components/shadcn/ui/tooltip";
 import { ThemeToggleButton } from "@/components/theme-toggle";
+import MentorCreationModal from "@/modules/mentors/components/mentor-creation-modal";
 
 interface IMentorMainHeader {
 	readonly notificationCount?: number;
-	readonly onCreateMentor?: () => void;
 }
 
 // Route mapping for breadcrumbs
@@ -40,7 +40,6 @@ const routeMap: Record<string, string> = {
 
 export default function MentorMainHeader({
 	notificationCount = 0,
-	onCreateMentor,
 }: IMentorMainHeader) {
 	const pathname = usePathname();
 
@@ -80,8 +79,9 @@ export default function MentorMainHeader({
 					<Separator orientation="vertical" className="mr-2 h-4" />
 					<Breadcrumb>
 						<BreadcrumbList>
-							{breadcrumbs.map((crumb, index) => {
-								const isLast = index === breadcrumbs.length - 1;
+							{breadcrumbs.map((crumb) => {
+								const isLast =
+									crumb.href === breadcrumbs[breadcrumbs.length - 1].href;
 								return (
 									<React.Fragment key={crumb.href}>
 										<BreadcrumbItem>
@@ -125,7 +125,7 @@ export default function MentorMainHeader({
 						size="sm"
 						className="relative cursor-pointer hover:bg-transparent"
 					>
-						<Bell className="h-4 w-4" />
+						<Bell className="size-4" />
 						{notificationCount > 0 && (
 							<Badge
 								variant="destructive"
@@ -142,15 +142,7 @@ export default function MentorMainHeader({
 					</Button>
 
 					{/* Create Mentor CTA */}
-					<Button
-						variant="super"
-						onClick={onCreateMentor}
-						size="sm"
-						className="gap-2 cursor-pointer"
-					>
-						<Plus className="h-4 w-4" />
-						Create Mentor
-					</Button>
+					<MentorCreationModal />
 				</div>
 			</div>
 		</header>
