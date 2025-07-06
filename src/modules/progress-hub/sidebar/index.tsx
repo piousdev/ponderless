@@ -34,21 +34,21 @@ const data = {
 			icon: LineChartIcon,
 		},
 		{
-			title: "My Assessments",
+			title: "Assessments",
 			url: "/progress-hub/assessments",
 			icon: FileChartLineIcon,
 			items: [
 				{
-					title: "Test Library",
-					url: "/progress-hub/assessments",
+					title: "Schedule",
+					url: "/progress-hub/assessments/schedule",
 				},
 				{
-					title: "My Results",
+					title: "Results",
 					url: "/progress-hub/assessments/results",
 				},
 				{
-					title: "Schedule",
-					url: "/progress-hub/assessments/schedule",
+					title: "Library",
+					url: "/progress-hub/assessments/library",
 				},
 			],
 		},

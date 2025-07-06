@@ -20,6 +20,17 @@ export interface CalendarEvent {
 	priority: EventPriority;
 	color: EventColor;
 	status?: EventStatus;
+	// Progress tracking
+	score?: number; // Score achieved (0-100)
+	maxScore?: number; // Maximum possible score
+	completedAt?: Date; // When the event was completed
+	// Multi-session tracking
+	sessionNumber?: number; // Current session number
+	totalSessions?: number; // Total number of sessions
+	seriesId?: string; // ID to link related sessions
+	// Performance tracking
+	previousScore?: number; // Previous attempt score for comparison
+	improvementTrend?: "up" | "down" | "stable"; // Performance trend
 }
 
 export interface CalendarComponentProps {

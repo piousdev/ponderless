@@ -31,8 +31,8 @@ interface IProgressHubMainHeader {
 const routeMap: Record<string, string> = {
 	"/progress-hub": "Overview",
 	"/progress-hub/assessments": "Assessments",
-	"/progress-hub/assessments/my-results": "My Results",
-	"/progress-hub/assessments/schedule": "Schedule",
+	"/progress-hub/assessments/results": "My Results",
+	"/progress-hub/assessments/schedule": "My Schedules",
 	"/progress-hub/progress": "My Progress",
 	"/progress-hub/progress/cognitive-profile": "Cognitive Profile",
 	"/progress-hub/goals": "Goals & Milestones",
@@ -144,7 +144,7 @@ export default function ProgressHubMainHeader({
 					</Button>
 
 					{/* Quick Action Button */}
-					<Button size="sm" className="gap-2">
+					<Button variant="super" size="sm" className="gap-2">
 						<Plus className="size-4" />
 						Quick Assessment
 					</Button>
