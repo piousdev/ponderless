@@ -44,7 +44,7 @@ const data = {
 				},
 				{
 					title: "My Results",
-					url: "/progress-hub/assessments/my-results",
+					url: "/progress-hub/assessments/results",
 				},
 				{
 					title: "Schedule",

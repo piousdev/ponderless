@@ -1,12 +1,12 @@
 import { BarChart3 } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipProvider,
 	TooltipTrigger,
 } from "@/components/shadcn/ui/tooltip";
-import Link from "next/link";
-import { useState } from "react";
 
 export default function ProgressHubLogo() {
 	const [tooltipOpen, setTooltipOpen] = useState(false);

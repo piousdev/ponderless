@@ -1,8 +1,8 @@
 "use client";
 
 import { ChevronRight, type LucideIcon } from "lucide-react";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 import {
 	Collapsible,
@@ -55,7 +55,11 @@ export default function ProgressHubMainNav({
 					return (
 						<Collapsible key={item.title} asChild defaultOpen={isActive}>
 							<SidebarMenuItem>
-								<SidebarMenuButton asChild tooltip={item.title} isActive={isActive}>
+								<SidebarMenuButton
+									asChild
+									tooltip={item.title}
+									isActive={isActive}
+								>
 									<Link href={item.url}>
 										<item.icon />
 										<span>{item.title}</span>
@@ -73,7 +77,10 @@ export default function ProgressHubMainNav({
 											<SidebarMenuSub>
 												{item.items?.map((subItem) => (
 													<SidebarMenuSubItem key={subItem.title}>
-														<SidebarMenuSubButton asChild isActive={pathname === subItem.url}>
+														<SidebarMenuSubButton
+															asChild
+															isActive={pathname === subItem.url}
+														>
 															<Link href={subItem.url}>
 																<span>{subItem.title}</span>
 															</Link>
