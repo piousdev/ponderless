@@ -101,7 +101,7 @@ const primaryNavItems: ReadonlyArray<INavigationItem> = [
 	{
 		id: createNavigationId("nav-progress-hub"),
 		title: "Progress Hub",
-		hrefOrExternalUrl: "/dashboard",
+		hrefOrExternalUrl: "/progress-hub",
 		icon: "dashboard" as const,
 		order: 3,
 		section: "primary" as const,

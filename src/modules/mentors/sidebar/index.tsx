@@ -9,6 +9,8 @@ import {
 	Users2,
 } from "lucide-react";
 import type * as React from "react";
+import SidebarLogo from "@/components/logo-sidebar";
+import { ScrollArea } from "@/components/shadcn/ui/scroll-area";
 import {
 	Sidebar,
 	SidebarContent,
@@ -19,7 +21,6 @@ import {
 	SidebarMenuItem,
 } from "@/components/shadcn/ui/sidebar";
 import { authClient } from "@/lib/auth/auth-client";
-import SidebarLogo from "@/modules/mentors/sidebar/logo";
 import SidebarMainNav from "@/modules/mentors/sidebar/main-nav";
 import SecondaryNav from "@/modules/mentors/sidebar/secondary-nav";
 import TrialCard from "@/modules/mentors/sidebar/trial-card";
@@ -78,20 +79,22 @@ export default function MentorSidebar({
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton size="lg" asChild>
-							<SidebarLogo />
+							<SidebarLogo subTitle="Your Personal Mentor" />
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				</SidebarMenu>
 			</SidebarHeader>
 			<SidebarContent>
-				<SidebarMainNav items={data.mainNav} />
-				<TrialCard
-					currentMentors={2}
-					maxMentors={5}
-					currentMeetings={3}
-					maxMeetings={10}
-				/>
-				<SecondaryNav items={data.secondaryNav} className="mt-auto" />
+				<ScrollArea className="flex-1">
+					<SidebarMainNav items={data.mainNav} />
+					<TrialCard
+						currentMentors={2}
+						maxMentors={5}
+						currentMeetings={3}
+						maxMeetings={10}
+					/>
+					<SecondaryNav items={data.secondaryNav} className="mt-auto" />
+				</ScrollArea>
 			</SidebarContent>
 			<SidebarFooter>
 				<UserNav user={session.user} />
