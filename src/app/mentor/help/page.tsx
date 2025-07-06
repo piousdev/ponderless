@@ -12,7 +12,7 @@ export default function HelpPage() {
 					<HelpCommandMenu />
 					<HelpFrequentlyAsked className="mt-[5rem]" />
 				</div>
-				<HelpContact className="w-full max-w-4xl mt-12" />
+				<HelpContact className="w-full max-w-4xl m-[5rem]" />
 			</div>
 		</div>
 	);
