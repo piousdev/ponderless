@@ -1,4 +1,4 @@
-import { Lightbulb } from "lucide-react";
+import { Lightbulb, X } from "lucide-react";
 import { useId } from "react";
 import { Button } from "@/components/shadcn/ui/button";
 import { Input } from "@/components/shadcn/ui/input";
@@ -19,6 +19,41 @@ export const BasicInfoStep = ({
 }: BasicInfoStepProps) => {
 	const nameId = useId();
 	const purposeId = useId();
+
+	// Helper function to check if a purpose is already in the textarea
+	const isPurposeSelected = (purpose: string): boolean => {
+		return formData.purpose.includes(purpose);
+	};
+
+	// Helper function to add a purpose to the textarea
+	const addPurpose = (purpose: string): void => {
+		const currentPurpose = formData.purpose.trim();
+		const newPurpose = currentPurpose
+			? `${currentPurpose} ${purpose}.`.trim()
+			: `${purpose}.`;
+
+		onUpdateFormData({ purpose: newPurpose });
+	};
+
+	// Helper function to remove a purpose from the textarea
+	const removePurpose = (purpose: string): void => {
+		const purposePattern = new RegExp(`\\s*${purpose}\\.?\\s*`, "gi");
+		const updatedPurpose = formData.purpose
+			.replace(purposePattern, " ")
+			.replace(/\s+/g, " ")
+			.trim();
+
+		onUpdateFormData({ purpose: updatedPurpose });
+	};
+
+	// Toggle purpose - add if not present, remove if present
+	const togglePurpose = (purpose: string): void => {
+		if (isPurposeSelected(purpose)) {
+			removePurpose(purpose);
+		} else {
+			addPurpose(purpose);
+		}
+	};
 
 	return (
 		<div className="space-y-6">
@@ -63,24 +98,32 @@ export const BasicInfoStep = ({
 				)}
 				<div className="mt-2">
 					<p className="text-xs text-muted-foreground mb-2">
-						For example, click a tag to add it to your purpose:
+						Click to add/remove purposes. Selected purposes are highlighted:
 					</p>
 					<div className="flex flex-wrap gap-2">
-						{criticalThinkingPurposes.map((purpose) => (
-							<Button
-								key={purpose}
-								variant="secondaryOutline"
-								size="sm"
-								onClick={() =>
-									onUpdateFormData({
-										purpose: `${formData.purpose} ${purpose}.`.trim(),
-									})
-								}
-							>
-								<Lightbulb className="mr-2 h-4 w-4" />
-								{purpose}
-							</Button>
-						))}
+						{criticalThinkingPurposes.map((purpose) => {
+							const isSelected = isPurposeSelected(purpose);
+							return (
+								<Button
+									key={purpose}
+									variant="ghost"
+									size="sm"
+									onClick={() => togglePurpose(purpose)}
+									className={`!capitalize !text-xs transition-all duration-200 cursor-pointer ${
+										isSelected
+											? "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:text-primary-foreground"
+											: "hover:bg-muted hover:text-muted-foreground"
+									}`}
+								>
+									{isSelected ? (
+										<X className="mr-2 size-4" />
+									) : (
+										<Lightbulb className="mr-2 size-4" />
+									)}
+									{purpose}
+								</Button>
+							);
+						})}
 					</div>
 				</div>
 				<p className="text-xs text-muted-foreground mt-2 text-right">

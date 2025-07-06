@@ -33,8 +33,12 @@ export const TemplatesStep = ({
 					</Card>
 				))}
 			</div>
-			<div className="text-center">
-				<Button variant="secondary" onClick={onStartFromScratch}>
+			<div className="text-center w-full">
+				<Button
+					variant="secondary"
+					onClick={onStartFromScratch}
+					className="w-full cursor-pointer"
+				>
 					Start from Scratch
 				</Button>
 			</div>
