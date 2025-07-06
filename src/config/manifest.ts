@@ -1,4 +1,4 @@
-import { siteConfig, metaThemeColors } from "@/config/site";
+import { metaThemeColors, siteConfig } from "@/config/site";
 
 export interface WebManifestIcon {
 	src: string;

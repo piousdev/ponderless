@@ -1,44 +1,46 @@
 "use server";
 
 export interface EmailTemplateProps {
-  email: string;
-  message: string;
-  submittedAt?: string;
+	email: string;
+	message: string;
+	submittedAt?: string;
 }
 
 export async function renderContactFormEmail(
-  props: EmailTemplateProps,
+	props: EmailTemplateProps,
 ): Promise<string> {
-  const { email, message, submittedAt } = props;
-  
-  // Generate current timestamp if not provided
-  const currentDate = new Date();
-  const formattedDate = submittedAt || currentDate.toLocaleString('en-US', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    timeZoneName: 'short'
-  });
+	const { email, message, submittedAt } = props;
 
-  // Escape HTML to prevent XSS
-  const escapeHtml = (text: string) => {
-    return text
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#39;");
-  };
+	// Generate current timestamp if not provided
+	const currentDate = new Date();
+	const formattedDate =
+		submittedAt ||
+		currentDate.toLocaleString("en-US", {
+			weekday: "long",
+			year: "numeric",
+			month: "long",
+			day: "numeric",
+			hour: "2-digit",
+			minute: "2-digit",
+			timeZoneName: "short",
+		});
 
-  const escapedEmail = escapeHtml(email);
-  const escapedMessage = escapeHtml(message);
-  const escapedSubmittedAt = escapeHtml(formattedDate);
+	// Escape HTML to prevent XSS
+	const escapeHtml = (text: string) => {
+		return text
+			.replace(/&/g, "&amp;")
+			.replace(/</g, "&lt;")
+			.replace(/>/g, "&gt;")
+			.replace(/"/g, "&quot;")
+			.replace(/'/g, "&#39;");
+	};
 
-  // Ponderless Logo - Table-based for maximum email compatibility
-  const ponderlessLogo = `<table cellpadding="0" cellspacing="0" style="margin: 0 auto;">
+	const escapedEmail = escapeHtml(email);
+	const escapedMessage = escapeHtml(message);
+	const escapedSubmittedAt = escapeHtml(formattedDate);
+
+	// Ponderless Logo - Table-based for maximum email compatibility
+	const ponderlessLogo = `<table cellpadding="0" cellspacing="0" style="margin: 0 auto;">
     <tr>
       <td style="width: 48px; height: 48px; background-color: #3b82f6; border-radius: 12px; text-align: center; vertical-align: middle;">
         <span style="color: #ffffff; font-size: 24px; font-weight: 800; font-family: Arial, sans-serif; line-height: 48px;">P</span>
@@ -46,7 +48,7 @@ export async function renderContactFormEmail(
     </tr>
   </table>`;
 
-  return `<!DOCTYPE html>
+	return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">

@@ -7,9 +7,9 @@ export const createTRPCContext = cache(async () => {
 	 * @see: https://trpc.io/docs/server/context
 	 */
 	const cookieStore = await cookies();
-	return { 
+	return {
 		userId: "user_123",
-		cookies: cookieStore
+		cookies: cookieStore,
 	};
 });
 // Avoid exporting the entire t-object
