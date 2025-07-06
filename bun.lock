@@ -32,11 +32,13 @@
         "@radix-ui/react-toggle": "^1.1.9",
         "@radix-ui/react-toggle-group": "^1.1.10",
         "@radix-ui/react-tooltip": "^1.2.7",
+        "@tabler/icons-react": "^3.34.0",
         "@tanstack/react-query": "^5.81.2",
         "@trpc/client": "^11.4.2",
         "@trpc/react-query": "^11.4.2",
         "@trpc/server": "^11.4.2",
         "@trpc/tanstack-react-query": "^11.4.2",
+        "@vercel/analytics": "^1.5.0",
         "aos": "^2.3.4",
         "better-auth": "^1.2.10",
         "class-variance-authority": "^0.7.1",
@@ -48,6 +50,7 @@
         "drizzle-orm": "^0.44.2",
         "embla-carousel-react": "^8.6.0",
         "input-otp": "^1.4.2",
+        "jotai": "^2.12.5",
         "lucide-react": "^0.523.0",
         "next": "15.3.4",
         "next-themes": "^0.4.6",
@@ -397,6 +400,10 @@
 
     "@swc/helpers": ["@swc/helpers@0.5.15", "", { "dependencies": { "tslib": "^2.8.0" } }, "sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g=="],
 
+    "@tabler/icons": ["@tabler/icons@3.34.0", "", {}, "sha512-jtVqv0JC1WU2TTEBN32D9+R6mc1iEBuPwLnBsWaR02SIEciu9aq5806AWkCHuObhQ4ERhhXErLEK7Fs+tEZxiA=="],
+
+    "@tabler/icons-react": ["@tabler/icons-react@3.34.0", "", { "dependencies": { "@tabler/icons": "3.34.0" }, "peerDependencies": { "react": ">= 16" } }, "sha512-OpEIR2iZsIXECtAIMbn1zfKfQ3zKJjXyIZlkgOGUL9UkMCFycEiF2Y8AVfEQsyre/3FnBdlWJvGr0NU47n2TbQ=="],
+
     "@tailwindcss/node": ["@tailwindcss/node@4.1.11", "", { "dependencies": { "@ampproject/remapping": "^2.3.0", "enhanced-resolve": "^5.18.1", "jiti": "^2.4.2", "lightningcss": "1.30.1", "magic-string": "^0.30.17", "source-map-js": "^1.2.1", "tailwindcss": "4.1.11" } }, "sha512-yzhzuGRmv5QyU9qLNg4GTlYI6STedBWRE7NjxP45CsFYYq9taI0zJXZBMqIC/c8fViNLhmrbpSFS57EoxUmD6Q=="],
 
     "@tailwindcss/oxide": ["@tailwindcss/oxide@4.1.11", "", { "dependencies": { "detect-libc": "^2.0.4", "tar": "^7.4.3" }, "optionalDependencies": { "@tailwindcss/oxide-android-arm64": "4.1.11", "@tailwindcss/oxide-darwin-arm64": "4.1.11", "@tailwindcss/oxide-darwin-x64": "4.1.11", "@tailwindcss/oxide-freebsd-x64": "4.1.11", "@tailwindcss/oxide-linux-arm-gnueabihf": "4.1.11", "@tailwindcss/oxide-linux-arm64-gnu": "4.1.11", "@tailwindcss/oxide-linux-arm64-musl": "4.1.11", "@tailwindcss/oxide-linux-x64-gnu": "4.1.11", "@tailwindcss/oxide-linux-x64-musl": "4.1.11", "@tailwindcss/oxide-wasm32-wasi": "4.1.11", "@tailwindcss/oxide-win32-arm64-msvc": "4.1.11", "@tailwindcss/oxide-win32-x64-msvc": "4.1.11" } }, "sha512-Q69XzrtAhuyfHo+5/HMgr1lAiPP/G40OMFAnws7xcFEYqcypZmdW8eGXaOUIeOl1dzPJBPENXgbjsOyhg2nkrg=="],
@@ -468,6 +475,8 @@
     "@types/react-dom": ["@types/react-dom@19.1.6", "", { "peerDependencies": { "@types/react": "^19.0.0" } }, "sha512-4hOiT/dwO8Ko0gV1m/TJZYk3y0KBnY9vzDh7W+DH17b2HFSOGgdj33dhihPeuy3l0q23+4e+hoXHV6hCC4dCXw=="],
 
     "@types/use-sync-external-store": ["@types/use-sync-external-store@0.0.6", "", {}, "sha512-zFDAD+tlpf2r4asuHEj0XH6pY6i0g5NeAHPn+15wk3BV6JA69eERFXC1gyGThDkVa1zCyKr5jox1+2LbV/AMLg=="],
+
+    "@vercel/analytics": ["@vercel/analytics@1.5.0", "", { "peerDependencies": { "@remix-run/react": "^2", "@sveltejs/kit": "^1 || ^2", "next": ">= 13", "react": "^18 || ^19 || ^19.0.0-rc", "svelte": ">= 4", "vue": "^3", "vue-router": "^4" }, "optionalPeers": ["@remix-run/react", "@sveltejs/kit", "next", "react", "svelte", "vue", "vue-router"] }, "sha512-MYsBzfPki4gthY5HnYN7jgInhAZ7Ac1cYDoRWFomwGHWEX7odTEzbtg9kf/QSo7XEsEAqlQugA6gJ2WS2DEa3g=="],
 
     "aos": ["aos@2.3.4", "", { "dependencies": { "classlist-polyfill": "^1.0.3", "lodash.debounce": "^4.0.6", "lodash.throttle": "^4.0.1" } }, "sha512-zh/ahtR2yME4I51z8IttIt4lC1Nw0ktsFtmeDzID1m9naJnWXhCoARaCgNOGXb5CLy3zm+wqmRAEgMYB5E2HUw=="],
 
@@ -606,6 +615,8 @@
     "jiti": ["jiti@2.4.2", "", { "bin": { "jiti": "lib/jiti-cli.mjs" } }, "sha512-rg9zJN+G4n2nfJl5MW3BMygZX56zKPNVEYYqq7adpmMh4Jn2QNEwhvQlFy6jPVdcod7txZtKHWnyZiA3a0zP7A=="],
 
     "jose": ["jose@6.0.11", "", {}, "sha512-QxG7EaliDARm1O1S8BGakqncGT9s25bKL1WSf6/oa17Tkqwi8D2ZNglqCF+DsYF88/rV66Q/Q2mFAy697E1DUg=="],
+
+    "jotai": ["jotai@2.12.5", "", { "peerDependencies": { "@types/react": ">=17.0.0", "react": ">=17.0.0" }, "optionalPeers": ["@types/react", "react"] }, "sha512-G8m32HW3lSmcz/4mbqx0hgJIQ0ekndKWiYP7kWVKi0p6saLXdSoye+FZiOFyonnd7Q482LCzm8sMDl7Ar1NWDw=="],
 
     "kysely": ["kysely@0.28.2", "", {}, "sha512-4YAVLoF0Sf0UTqlhgQMFU9iQECdah7n+13ANkiuVfRvlK+uI0Etbgd7bVP36dKlG+NXWbhGua8vnGt+sdhvT7A=="],
 
